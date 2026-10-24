@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.*
+serviceAccountKey*.json
+idcard-key.enc.json
+*.enc.json
+*.key
+*.pem
+*.cert
+*.log
+.vscode/
+.idea/
