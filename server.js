@@ -12,6 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/idcard', require('./routes/idcardRoutes'));
 
 // Health Check Endpoint
 app.get('/health', (req, res) => {
