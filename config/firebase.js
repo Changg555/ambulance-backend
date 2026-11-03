@@ -14,7 +14,16 @@ if (!admin.apps.length) {
 
   const foundPath = candidatePaths.find((p) => fs.existsSync(p));
 
-  if (foundPath) {
+  if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+    try {
+      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+      });
+    } catch (err) {
+      console.error("Error parsing FIREBASE_SERVICE_ACCOUNT env var:", err);
+    }
+  } else if (foundPath) {
     const serviceAccount = require(foundPath);
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
